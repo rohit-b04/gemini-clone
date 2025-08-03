@@ -6,7 +6,9 @@ import ContextProvider from "./context/Context";
 const App = () => {
   return (
     <>
-      <ContextProvider>
+    
+      <ContextProvider >
+        {/* {console.log("inside ContextProvider")} */}
         <Sidebar />
         <Main />
       </ContextProvider>

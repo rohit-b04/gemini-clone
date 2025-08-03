@@ -40,11 +40,13 @@ async function main(prompt) {
     config,
     contents,
   });
-  console.log(response.text);
+  
+  //console.log(response.text);
   let fileIndex = 0;
   for await (const chunk of response) {
     console.log(chunk.text);
   }
+  return response
 }
 
 export default main;

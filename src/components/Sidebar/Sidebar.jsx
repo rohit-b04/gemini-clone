@@ -6,6 +6,7 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar">
+
       <div className="top">
         <img className="menu" src={assets.menu_icon} alt="Menu Icon" onClick={() => setExtended(!extended)} />
         <div className="new-chat">
