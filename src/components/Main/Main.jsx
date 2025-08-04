@@ -13,17 +13,24 @@ const Main = () => {
     input,
   } = useContext(Context);
 
-  function inputChangeHandler(event) {
-    setInput(event.target.value);
-    if (event.target.key === "enter") onSent(input);
+  function handleSend() {
+    if(input.trim() !== '') {
+      onSent();
+      setInput('')
+    }
+  }
+  function keyPressHandler(event) {
+    if(event.key === 'Enter'){
+      handleSend();
+    } 
   }
   //console.log(input)
   function sendPrompt() {
     // console.log(input);
-    onSent(input);
+    onSent();
     setInput("");
   }
-
+  //console.log(loading)
   return (
     <div className="main">
       {/* {console.log('rendering main')} */}
@@ -70,20 +77,21 @@ const Main = () => {
             </div>
             <div className="result-data">
               <img src={assets.gemini_icon} alt="" />
-              {/* {loading ? (
+              {loading ? (
                 <div className="loader">
-                  
-                  <hr /> <hr /> <hr />
+                  loading<hr /> <hr /> <hr />
                 </div>
-              ) : null} */}
-              <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
+              ) : (
+                <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
+              )}
             </div>
           </div>
         )}
         <div className="main-bottom">
           <div className="search-box">
             <input
-              onChange={inputChangeHandler}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={keyPressHandler}
               type="text"
               placeholder="Enter a prompt here"
               value={input}
@@ -91,7 +99,7 @@ const Main = () => {
             <div>
               <img src={assets.gallery_icon} alt="" />
               <img src={assets.mic_icon} alt="" />
-              <img src={assets.send_icon} alt="" onClick={sendPrompt} />
+              <img src={assets.send_icon} alt="" onClick={handleSend} />
             </div>
           </div>
           <p className="bottom-info">
