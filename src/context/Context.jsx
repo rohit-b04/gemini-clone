@@ -17,14 +17,16 @@ export default function ContextProvider({children}) {
         setResultData('')
         setLoading(true)
         setShowResult(true)
+        setRecentPrompt(input)
         try {
-            const response = await main(prompt)
+            const response = await main(input)
             setResultData(response)
             setLoading(false)
             setInput('')            
         } catch (e){
             //...
         }
+        console.log(resultData.text)
         
     }
     //useEffect(()=> {onSent('What is react')}, [])

@@ -15,7 +15,7 @@ const Main = () => {
 
   function inputChangeHandler(event) {
     setInput(event.target.value);
-    
+    if (event.target.key === "enter") onSent(input);
   }
   //console.log(input)
   function sendPrompt() {
@@ -27,39 +27,56 @@ const Main = () => {
   return (
     <div className="main">
       {/* {console.log('rendering main')} */}
+      {/* {console.log(resultData)} */}
       <div className="nav">
         <p>Gemini</p>
         <img src={assets.user_icon} />
       </div>
+
       <div className="main-container">
         {!showResult ? (
-          <div className="greet">
-            <p>
-              <span>Hello, Dev.</span>
-            </p>
-            <p>How can i help you</p>
-          </div>
+          <>
+            <div className="greet">
+              <p>
+                <span>Hello, Dev.</span>
+              </p>
+              <p>How can i help you</p>
+            </div>
+
+            <div className="cards">
+              <div className="card">
+                <p>Suggest beautiful places</p>
+                <img src={assets.compass_icon} alt="" />
+              </div>
+              <div className="card">
+                <p>Briefly summarize this concept</p>
+                <img src={assets.bulb_icon} alt="" />
+              </div>
+              <div className="card">
+                <p>Brainstorm team bonding activities</p>
+                <img src={assets.message_icon} alt="" />
+              </div>
+              <div className="card">
+                <p>Improve the readability of the following code</p>
+                <img src={assets.code_icon} alt="" />
+              </div>
+            </div>
+          </>
         ) : (
-          <div className="result"> <div className="result-title">
-            <img src={assets.user_icon} alt="" /></div> </div>
-        )}
-        {!showResult && (
-          <div className="cards">
-            <div className="card">
-              <p>Suggest beautiful places</p>
-              <img src={assets.compass_icon} alt="" />
+          <div className="result">
+            <div className="result-title">
+              <img src={assets.user_icon} alt="user icon" />
+              <p>{recentPrompt}</p>
             </div>
-            <div className="card">
-              <p>Briefly summarize this concept</p>
-              <img src={assets.bulb_icon} alt="" />
-            </div>
-            <div className="card">
-              <p>Brainstorm team bonding activities</p>
-              <img src={assets.message_icon} alt="" />
-            </div>
-            <div className="card">
-              <p>Improve the readability of the following code</p>
-              <img src={assets.code_icon} alt="" />
+            <div className="result-data">
+              <img src={assets.gemini_icon} alt="" />
+              {/* {loading ? (
+                <div className="loader">
+                  
+                  <hr /> <hr /> <hr />
+                </div>
+              ) : null} */}
+              <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
             </div>
           </div>
         )}

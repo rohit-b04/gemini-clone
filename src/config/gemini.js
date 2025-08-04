@@ -5,8 +5,6 @@ const API_KEY = "AIzaSyBRJbCYGjlWqYola-yvtzanAEu1ENJNtNM";
 // npm install @google/genai mime
 // npm install -D @types/node
 
-
-
 async function main(prompt) {
   const ai = new GoogleGenAI({
     //apiKey: process.env.GEMINI_API_KEY,
@@ -40,13 +38,14 @@ async function main(prompt) {
     config,
     contents,
   });
-  
+
   //console.log(response.text);
   let fileIndex = 0;
+  let fullResponse = "";
   for await (const chunk of response) {
-    console.log(chunk.text);
+    fullResponse += chunk.text;
   }
-  return response
+  return fullResponse;
 }
 
 export default main;
