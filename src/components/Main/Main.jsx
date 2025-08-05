@@ -79,7 +79,7 @@ const Main = () => {
               <img src={assets.gemini_icon} alt="" />
               {loading ? (
                 <div className="loader">
-                  loading<hr /> <hr /> <hr />
+                  <hr /> <hr /> <hr />
                 </div>
               ) : (
                 <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
@@ -99,7 +99,7 @@ const Main = () => {
             <div>
               <img src={assets.gallery_icon} alt="" />
               <img src={assets.mic_icon} alt="" />
-              <img src={assets.send_icon} alt="" onClick={handleSend} />
+              {input && <img src={assets.send_icon} alt="" onClick={handleSend} />}
             </div>
           </div>
           <p className="bottom-info">

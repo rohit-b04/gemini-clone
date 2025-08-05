@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import main from "../config/gemini";
 
 export const Context = createContext();
@@ -17,6 +17,12 @@ export default function ContextProvider({ children }) {
       setResultData((prev) => prev + nextWord);
     }, 75 * index);
   };
+
+  function newChat() {
+    setShowResult(false);
+    setLoading(false);
+  }
+
   async function onSent(prompt) {
     setResultData("");
     setLoading(true);
@@ -64,6 +70,7 @@ export default function ContextProvider({ children }) {
     showResult,
     loading,
     resultData,
+    newChat,
   };
 
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;
